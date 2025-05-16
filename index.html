@@ -49,7 +49,7 @@
 <body>
     <div id="game">
         <div id="directions">
-            <h3>Guess the word!</h3>
+            <h3>Guess the word!<span id="hint"></span></h3>
             <small>Directions: Type a word in the box, if you get it wrong, the word will show below. The letters are colored; Red indicates the letter is not part of the word; Orange means the letter is in the word; And finally Green means you got the correct letter in the correct spot of the answer!</small>
         </div>
 
@@ -3069,6 +3069,11 @@ zone`
 
         console.log("Word: ", word);
 
+        const attempts = 10;
+
+        if(attempts < 4) document.getElementById("hint").innerText = `Word Length = ${word.length}`;
+        if(attempts === 0) `<h1>You Lose!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`
+        
         function checkForm(e) {
             e.preventDefault();
 
@@ -3082,6 +3087,7 @@ zone`
                 document.getElementById("game").innerHTML = `<h1>You Win!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
                 form.reset();
             } else {
+                attempts--;
                 separatedGuess.forEach((letter, index) => {
                     const subElem = document.createElement("span");
                     const positions = getPos(word, letter);
