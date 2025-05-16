@@ -13,6 +13,17 @@
             padding: 0.5rem;
         }
 
+        #guesses {
+            display: flex;
+        }
+
+        #guesses > p {
+            margin-left: 0.5rem;
+            padding: 0.3rem;
+            border: 1px solid black;
+            border-radius: 0.2rem;
+        }
+
         .almost {
             color: orange;
         }
@@ -29,6 +40,8 @@
 <body>
     <div id="game">
         <h3>Guess the word!</h3>
+
+        <p>Directions: Type a word in the box, if you get it wrong, the word will show below. The letters are colored; Red indicates the letter is not part of the word; Orange means the letter is in the word.</p>
 
         <form id="guessWordForm">
             <input type="text" name="guessInput" id="guessInput">
@@ -3076,6 +3089,7 @@ zone`
                     });
                 });
                 document.getElementById("guesses").appendChild(elem);
+                form.reset();
             }
         }
     </script>
