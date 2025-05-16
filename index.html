@@ -3076,7 +3076,6 @@ zone`
             const formData = new FormData(form);
             const guess = formData.get('guessInput');
             const separatedGuess = guess.split('');
-            const separatedWord = word.split('');
             const elem = document.createElement("p");
             
             if(guess.toLowerCase() === word.toLowerCase()) {
@@ -3094,8 +3093,8 @@ zone`
                     elem.appendChild(subElem);
                 });
                 document.getElementById("guesses").appendChild(elem);
-                form.reset();
             }
+            form.reset();
         }
 
         function getPos(str, sub) {
