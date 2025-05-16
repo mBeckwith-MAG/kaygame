@@ -3080,6 +3080,7 @@ zone`
             
             if(guess.toLowerCase() === word.toLowerCase()) {
                 document.getElementById("game").innerHTML = `<h1>You Win!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
+                form.reset();
             } else {
                 separatedGuess.forEach((letter, index) => {
                     const subElem = document.createElement("span");
@@ -3093,8 +3094,8 @@ zone`
                     elem.appendChild(subElem);
                 });
                 document.getElementById("guesses").appendChild(elem);
+                form.reset();
             }
-            form.reset();
         }
 
         function getPos(str, sub) {
