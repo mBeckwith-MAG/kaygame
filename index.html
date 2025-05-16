@@ -3069,7 +3069,7 @@ zone`
 
         console.log("Word: ", word);
 
-        const attempts = 10;
+        let attempts = 10;
 
         if(attempts < 4) document.getElementById("hint").innerText = `Word Length = ${word.length}`;
         if(attempts === 0) `<h1>You Lose!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`
