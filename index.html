@@ -3072,11 +3072,11 @@ zone`
             if(guess.toLowerCase() === word.toLowerCase()) {
                 document.getElementById("game").innerHTML = `<h1>You Win!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
             } else {
-                separatedGuess.forEach((letter, index) => {
+                separatedGuess.forEach(letter => {
                     const subElem = document.createElement("span");
-                    separatedWord.forEach((lett, idx) => {
+                    separatedWord.forEach(lett => {
                         if(separatedWord.includes(letter)) {
-                            if(index === idx) {
+                            if(letter === lett) {
                                 subElem.className = "nice";
                             } else {
                                 subElem.className = "almost";
