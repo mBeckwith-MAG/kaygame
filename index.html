@@ -3071,11 +3071,14 @@ zone`
 
         let attempts = 10;
 
-        
         function checkForm(e) {
             e.preventDefault();
-            if(attempts < 4) document.getElementById("hint").innerText = `Word Length = ${word.length}`;
-            if(attempts === 0) `<h1>You Lose!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
+            
+            if (attempts > 0) {
+                if(attempts < 4) document.getElementById("hint").innerText = `Word Length = ${word.length}`;
+            } else {
+                document.getElementById("game").innerHTML = `<h1>You Win!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
+            }
 
             const form = document.getElementById('guessWordForm');
             const formData = new FormData(form);
