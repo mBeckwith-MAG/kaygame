@@ -13,8 +13,17 @@
             padding: 0.5rem;
         }
 
+        #directions {
+            line-height: 0.2rem;
+        }
+
+        form {
+            margin-top: 2rem;
+        }
+
         #guesses {
             display: flex;
+            font-size: larger;
         }
 
         #guesses > p {
@@ -39,9 +48,10 @@
 </head>
 <body>
     <div id="game">
-        <h3>Guess the word!</h3>
-
-        <p>Directions: Type a word in the box, if you get it wrong, the word will show below. The letters are colored; Red indicates the letter is not part of the word; Orange means the letter is in the word.</p>
+        <div id="directions">
+            <h3>Guess the word!</h3>
+            <small>Directions: Type a word in the box, if you get it wrong, the word will show below. The letters are colored; Red indicates the letter is not part of the word; Orange means the letter is in the word; And finally Green means you got the correct letter in the correct spot of the answer!</small>
+        </div>
 
         <form id="guessWordForm">
             <input type="text" name="guessInput" id="guessInput">
@@ -3072,25 +3082,31 @@ zone`
             if(guess.toLowerCase() === word.toLowerCase()) {
                 document.getElementById("game").innerHTML = `<h1>You Win!</h1><input type='submit' value="Play Again" onClick='window.location.reload()' />`;
             } else {
-                separatedGuess.forEach(letter => {
+                separatedGuess.forEach((letter, index) => {
                     const subElem = document.createElement("span");
-                    separatedWord.forEach(lett => {
-                        if(separatedWord.includes(letter)) {
-                            if(letter === lett) {
-                                subElem.className = "nice";
-                            } else {
-                                subElem.className = "almost";
-                            }
-                        } else {
-                            subElem.className = "nope";
-                        }
-                        subElem.innerHTML = letter;
-                        elem.appendChild(subElem);
-                    });
+                    const positions = getPos(word, letter);
+                    if(positions.length > 0) {
+                        positions.includes(index) ? subElem.className = "nice" : subElem.className = "almost";
+                    } else {
+                        subElem.className = "nope";
+                    }
+                    subElem.innerText = letter;
+                    elem.appendChild(subElem);
                 });
                 document.getElementById("guesses").appendChild(elem);
                 form.reset();
             }
+        }
+
+        function getPos(str, sub) {
+            const results = [];
+            let index = str.indexOf(sub);
+
+            while(index !== -1) {
+                results.push(index);
+                index = str.indexOf(sub, index + 1);
+            }
+            return results;
         }
     </script>
 </body>
